@@ -56,7 +56,15 @@ Increment the number of Ants in the simulation.
             placeCritter(c);
         }
     }
-
+    public void addBirds(int num) {
+        numBirds += num;
+        for (int i = 0; i < num; i++) {
+            Location loc = getOpenLocation();
+            Bird b = new Bird(loc);
+            placeCritter(b);
+        }
+    }
+    
 
 /******************************************************
 Move forward on step of the simulation
@@ -183,4 +191,15 @@ each location is constant.
         }
         return new Location(y,x);
     }
+    public void reset() {
+        theWorld = new GVcritter[ROWS][COLUMNS];
+        allCritters.clear();   
+        numAnts=0;
+        numBirds=0;
+        numHippos=0;
+        numVultures=0;
+        numLakers=0;
+        steps = 0;
+    }
+
 }
