@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=arg
+comment0.target=void\ main(java.lang.String[])
+comment0.text=\r\n\ \ \ \ Main\ method\ displays\ the\ simulation\ GUI\r\n
+comment1.params=
+comment1.target=CritterGUI()
+comment1.text=\r\n\ \ \ \ Create\ the\ GUI\r\n
+comment2.params=e
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment2.text=\r\n\ \ \ \ Respond\ to\ button\ clicks\r\n\ \ \ \ @param\ e\ action\ even\ triggered\ by\ user\r\n
+comment3.params=
+comment3.target=void\ run()
+comment3.text=\r\n\ \ \ \ Once\ started,\ this\ method\ runs\ forever\ in\ a\ separate\ thread\r\n\ \ \ \ The\ simulation\ only\ advances\ and\ displays\ if\ the\ boolean\r\n\ \ \ \ variable\ is\ currently\ true\r\n
+numComments=4

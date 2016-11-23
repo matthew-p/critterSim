@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=loc
+comment0.target=Ant(Location)
+comment0.text=\r\nCreate\ starting\ values\ for\ this\ Ant.\r\n@param\ loc\ given\ location\ for\ this\ critter\r\n
+numComments=1

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=r\ c
+comment0.target=Location(int,\ int)
+comment1.params=r
+comment1.target=void\ setRow(int)
+comment2.params=c
+comment2.target=void\ setCol(int)
+comment3.params=
+comment3.target=int\ getRow()
+comment4.params=
+comment4.target=int\ getCol()
+numComments=5

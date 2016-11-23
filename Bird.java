@@ -2,15 +2,17 @@
 /**
  * @author Matthew Pische
  */
+import java.awt.*;
 public class Bird extends GVcritter
 {
     private int cycleStart;
+    private Direction dir;
     public Bird (Location loc) {
         // call the parent class constructor w/ the given param 
         super(loc);
         setColor(Color.BLUE);
         setSpecies(Species.BIRD);
-        cycleStart = Math.random() * 14 + 1;
+        cycleStart = (int)(Math.random() * 14 + 1);
     }
     public Attack getAttack (GVcritter opponent) {
         return Attack.ROAR;
@@ -25,5 +27,6 @@ public class Bird extends GVcritter
             dir = Direction.SOUTH;
         else 
             dir = Direction.WEST;
+        return dir;
     }
 }

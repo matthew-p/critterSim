@@ -24,10 +24,15 @@ public class CritterGUI extends JFrame implements ActionListener, Runnable{
     /** displays updated statistics */
     JTextArea statsArea;
 
-    // FIX ME: define buttons as neeeded
-    JButton ants;    
+    private final int NUM_CRIT = 10;
+    // define buttons as neeeded
+    private JButton ants, birds, hippos, vultures, myCritters, start, stop;
 
-    // FIX ME: define menu items as needed
+    // define menu items as needed
+    private JMenuBar menuBar;
+    private JMenu fileMenu;
+    private JMenuItem clear;
+    private JMenuItem quit;
 
     /************************************************************
     Main method displays the simulation GUI
@@ -52,7 +57,7 @@ public class CritterGUI extends JFrame implements ActionListener, Runnable{
         // create the lay out
         setLayout(new GridBagLayout());
         GridBagConstraints position = new GridBagConstraints();
-
+        position.insets = new Insets(10,10,10,10);
         // Place the simulation on the screen
         position.gridx = 0;
         position.gridy = 1;
@@ -60,10 +65,22 @@ public class CritterGUI extends JFrame implements ActionListener, Runnable{
         world = new Simulation();
         add(world, position);
         
+        // menu
+        fileMenu = new JMenu("File");
+        clear = new JMenuItem("Clear");
+        quit = new JMenuItem("Quit");
+        clear.addActionListener(this);
+        quit.addActionListener(this);
+        fileMenu.add(clear);
+        fileMenu.add(quit);
+        menuBar = new JMenuBar();
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
 
         // Place a label
         position.gridx = 6;
         position.gridy = 0;  
+        position.gridwidth = 1;
         add(new JLabel("Live Stats"),position);
 
         // Place stats area below the label
@@ -74,18 +91,53 @@ public class CritterGUI extends JFrame implements ActionListener, Runnable{
         position.anchor = GridBagConstraints.PAGE_START;
         add(statsArea, position);  
         statsArea.setText(world.getStats());
+        
 
-        // FIX ME: place each button
+        // place each button
+        start = new JButton("Start");
+        start.setForeground(Color.BLACK);
+        position.gridx = 2;
+        position.gridy = 0;
+        add(start, position);
+        start.addActionListener(this);
+        
+        stop = new JButton("Stop");
+        position.gridx = 3;
+        add(stop, position);
+        stop.addActionListener(this);
+        
         ants = new JButton( "Ants" );
         ants.setForeground(Color.RED);
         position.gridx = 0;
         position.gridy = 2;   
         add(ants, position);
-
-        // FIX ME: add action listeners for each button
         ants.addActionListener(this);
+          
+        birds = new JButton("Birds");
+        birds.setForeground(Color.BLUE);
+        position.gridx = 1;
+        add(birds, position);
+        birds.addActionListener(this);
+        
+        hippos = new JButton("Hippos");
+        hippos.setForeground(Color.GRAY);
+        position.gridx = 2;
+        add(hippos, position);
+        hippos.addActionListener(this);
+        
+        vultures = new JButton("Vultures");
+        vultures.setForeground(Color.BLACK);
+        position.gridx = 3;
+        add(vultures, position);
+        vultures.addActionListener(this);
+        
+        myCritters = new JButton("My Critters");
+        myCritters.setForeground(Color.GREEN);
+        position.gridx = 4;
+        add(myCritters, position);
+        myCritters.addActionListener(this);
 
-        // Advanced topic! this must be at the end of this method
+        // this must be at the end of this method to
         // start the simulation in separate thread
         new Thread(this).start();
     }
@@ -95,25 +147,45 @@ public class CritterGUI extends JFrame implements ActionListener, Runnable{
     @param e action even triggered by user
      ************************************************************/
     public void actionPerformed(ActionEvent e){
-
-        // FIX ME: exit application if QUIT menu item
-        
-        // FIX ME: set running variable to true if START button
-
-
-        // FIX ME: set running variable to false if STOP button
-
-
-        // FIX ME: reset simulation if CLEAR menu item
-
-
-        //inject 10 ants if ANTS button
-        if(e.getSource() == ants){ 
-            world.addAnts(10);
+        /*
+         *     private JButton ants, birds, hippos, vultures, myCritters, start, stop;
+                private JMenuBar menuBar;
+                private JMenu, fileMenu;
+                private JMenuItem clear;
+                private JMenuItem quit;
+         */
+        // exit application if QUIT menu item
+        if (e.getSource() == quit) {
+            System.exit(1);
         }
-
-        //FIX ME: inject 10 species for each button        
-
+        // set running variable to true if START button
+        if (e.getSource() == start) {
+            isRunning = true;
+        }
+        // set running variable to false if STOP button
+        if (e.getSource() == stop) {
+            isRunning = false;
+        }    
+        // reset simulation if CLEAR menu item
+        if (e.getSource() == clear) {
+            world.reset();
+        }
+        //inject animals for each button
+        if(e.getSource() == ants){ 
+            world.addAnts(NUM_CRIT);
+        }
+        if (e.getSource() == birds) {
+            world.addBirds(NUM_CRIT);
+        }
+        if (e.getSource() == hippos) {
+            world.addHippos(NUM_CRIT);
+        }
+        if (e.getSource() == vultures) {
+            world.addVultures(NUM_CRIT);
+        }
+        if (e.getSource() == myCritters) {
+            world.addMyCritters(NUM_CRIT);
+        }      
 
         // Afterwards, update display and statistics
         world.repaint();
